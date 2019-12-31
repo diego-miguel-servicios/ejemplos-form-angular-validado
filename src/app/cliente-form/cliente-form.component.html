@@ -1,0 +1,109 @@
+<div class=container>
+    <div [hidden]="submitted">
+      <h1>Alta de Clientes
+      <button type="button" class="btn btn-defauld" (click)="newCliente(); clienteForm.reset()">Nuevo Cliente</button>
+    </h1>
+        <form (ngSubmit)="onSubmit()" #clienteForm="ngForm">
+          <!--{{diagnostic}}-->
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre"
+                    required
+                    [(ngModel)]="model.nombre" name="nombre" #name="ngModel"
+                    #spy>
+            <div [hidden]="name.valid || name.pristine" class="class alert-danger">
+
+                El nombre es requerido
+
+            </div>
+            <!--TODO: remove this: {{model.nombre}}*/
+            <br>TODO: remove this: {{spy.className}}-->
+          </div>
+
+          <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" id="apellido"
+                    required
+                    [(ngModel)]="model.apellido" name="apellido" #apellido="ngModel"
+                    >
+            <div [hidden]="apellido.valid || apellido.pristine" class="class alert-danger">
+
+                El Apellido es requerido
+
+            </div>
+            <!--TODO: remove this: {{model.apellido}}-->
+          </div>
+
+          <div class="form-group">
+            <label for="nombreUsuario">Nombre Usuario</label>
+            <input type="text" class="form-control" id="nombreUsuario"
+                    required
+                    [(ngModel)]="model.nombreUsuario" name="nombreUsuario" #nombreUsuario="ngModel"
+                    >
+            <div [hidden]="nombreUsuario.valid || nombreUsuario.pristine" class="class alert-danger">
+
+                El Nombre del usuario es requerido
+
+            </div>
+            <!--TODO: remove this: {{model.nombreUsuario}}-->
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email"
+                    [(ngModel)]="model.email" name="email" #email="ngModel"
+                    >
+            <div [hidden]="email.valid || email.pristine" class="class alert-danger">
+
+                El email es requerido
+
+            </div>
+            <!--TODO: remove this: {{model.email}}-->
+          </div>
+
+          <div class="form-group">
+            <label for="pais">Pais</label>
+            <select class='form-control' id="pais"
+                    required
+                    [(ngModel)]="model.pais" name="pais" #pais="ngModel"
+                    >
+              <option *ngFor="let pais of paises" [value]="pais">{{pais}}</option>
+            </select>
+            <div [hidden]="pais.valid || pais.pristine" class="class alert-danger">
+
+                El Pais es requerido
+
+            </div>
+            <!--TODO: remove this: {{model.pais}}-->
+          </div>
+
+          <button type="submit" class="btn btn-success"
+          [disabled]="!clienteForm.form.valid">Submit</button>
+        </form>
+      </div>
+      <div [hidden]="!submitted">
+        <h2>Ha enviado los siguientes datos:</h2>
+        <div class="row">
+          <div class="col-xs-3">Nombre</div>
+          <div class="col-xs-9">{{ model.nombre}}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Apellido</div>
+          <div class="col-xs-9">{{ model.apellido }}</div>
+        </div>
+        <div class="row">
+          <div class="col-xs-3">Nombre Usuario</div>
+          <div class="col-xs-9">{{ model.nombreUsuario }}</div>
+        </div>
+        <div>
+          <div class="col-xs-3">Email</div>
+          <div class="col-xs-9">{{ model.email }}</div>
+        </div>
+        <div>
+          <div class="col-xs-3">Pais</div>
+          <div class="col-xs-9">{{ model.pais }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+      </div>
+</div>
